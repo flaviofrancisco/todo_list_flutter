@@ -4,13 +4,14 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class ToDoListTile extends StatelessWidget {
   final String name;
   Function(BuildContext)? onDelete;
+  Function()? onPressed;
 
-  ToDoListTile({super.key, required this.name, required this.onDelete});
+  ToDoListTile({super.key, required this.name, required this.onPressed, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(24.0),
       child: Slidable(
         endActionPane: ActionPane(
           motion: StretchMotion(),
@@ -26,7 +27,7 @@ class ToDoListTile extends StatelessWidget {
           padding: EdgeInsets.all(24),
           child: Row(
             children: [
-              Text(name),
+              TextButton(onPressed: onPressed, child: Text(name))
             ],
           ),
           decoration: BoxDecoration(

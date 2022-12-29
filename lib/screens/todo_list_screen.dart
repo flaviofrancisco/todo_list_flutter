@@ -106,22 +106,25 @@ class _TodoListScreenState extends State<TodoListScreen> {
         children: [
           Visibility(
             visible: _isVisible,
-            child: TextField(
-              controller: _controller,
-              decoration: InputDecoration(labelText: 'Name'),
-              onChanged: (value) {
-                setState(() {
-                  _title = value;
-                });
-              },
-              onSubmitted: (value) {
-                if (value != '') {
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(labelText: 'Name'),
+                onChanged: (value) {
                   setState(() {
-                    _isVisible = false;
+                    _title = value;
                   });
-                  _todoListDb.fetchData(value);
-                }
-              },
+                },
+                onSubmitted: (value) {
+                  if (value != '') {
+                    setState(() {
+                      _isVisible = false;
+                    });
+                    _todoListDb.fetchData(value);
+                  }
+                },
+              ),
             ),
           ),
           Expanded(

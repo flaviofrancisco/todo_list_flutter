@@ -75,6 +75,10 @@ class _IntroScreenState extends State<IntroScreen> {
             itemBuilder: (context, index) {
               return ToDoListTile(
                 name: dbKeys[index],
+                onPressed: () {
+                  Navigator.pushNamed(context, '/new',
+                      arguments: ToDoListArgs(dbKeys[index]));
+                },
                 onDelete: (context) => deleteToDoList(index),
               );
             }),
